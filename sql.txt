@@ -1,0 +1,63 @@
+CREATE TABLE users (
+ id INT AUTO_INCREMENT PRIMARY KEY,
+ fullname VARCHAR(100),
+ email VARCHAR(100) UNIQUE,
+ password VARCHAR(255),
+ role VARCHAR(30)
+);
+
+CREATE TABLE events (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255),
+    category VARCHAR(100),
+    event_date DATE,
+    location VARCHAR(255),
+    price DECIMAL(10,2),
+    seats INT,
+    description TEXT,
+    image_url TEXT,
+    organizer VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+
+
+CREATE TABLE bookings (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    event_id INT NOT NULL,
+    fullname VARCHAR(150) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    quantity INT NOT NULL,
+    total DECIMAL(10,2) NOT NULL,
+    ticket_id VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE vendor_hire_requests (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    vendor_id VARCHAR(50) NOT NULL,
+    vendor_name VARCHAR(150) NOT NULL,
+    customer_name VARCHAR(150) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    phone VARCHAR(30) NOT NULL,
+    event_date DATE NOT NULL,
+    event_type VARCHAR(100) NOT NULL,
+    requirements TEXT,
+    status VARCHAR(30) DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE contact_messages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(150) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    subject VARCHAR(255) NOT NULL,
+    message TEXT NOT NULL,
+    status VARCHAR(30) DEFAULT 'unread',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
